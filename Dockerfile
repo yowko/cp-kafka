@@ -35,6 +35,7 @@ ENV COMPONENT=kafka
 EXPOSE 9092
 
 RUN echo "===> installing ${COMPONENT}..." \
+    && sed -i 's;http://archive.debian.org/debian/;http://deb.debian.org/debian/;' /etc/apt/sources.list \
     && apt-get update && apt-get install -y confluent-kafka-${SCALA_VERSION}=${CONFLUENT_VERSION}${CONFLUENT_PLATFORM_LABEL}-${CONFLUENT_DEB_VERSION} \
     \
     && echo "===> clean up ..."  \
